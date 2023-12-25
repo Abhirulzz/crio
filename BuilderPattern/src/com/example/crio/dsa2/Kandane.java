@@ -7,7 +7,7 @@ public class Kandane {
 	
 	public static  long contigiousSequence(int arr[] , int n) {
 		
-		long max=Integer.MIN_VALUE,maxEnding =0 ;
+		int max=Integer.MIN_VALUE,maxEnding =0 ;
 		
 		for(int a :arr)
 		{

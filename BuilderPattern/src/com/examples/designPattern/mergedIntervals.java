@@ -20,13 +20,56 @@ class  Interval{
 
 public class mergedIntervals {
 	
+	 public int[][] mergeIntervals(int[][] arr) {
+
+         List<Integer> a=new ArrayList<>();
+        Arrays.sort(arr, (c, b) -> Integer.compare(c[0], b[0]));
+        a.add(arr[0][0]);
+        a.add(arr[0][1]);
+        for(int i=1;i<arr.length;i++){
+            if(a.get(a.size()-1)<arr[i][0]){
+                a.add(arr[i][0]);
+                a.add(arr[i][1]);
+            }else if(a.get(a.size()-1)<arr[i][1]){
+                a.set(a.size()-1,arr[i][1]);
+            }
+        }
+        int ans[][]=new int[a.size()/2][2];
+        int k=0;
+        for(int i=0;i<ans.length;i++){
+            ans[i][0]=a.get(k++);
+            ans[i][1]=a.get(k++);
+        }
+        return ans;
+
+    }
+
+    public static void main(String[] args)
+    {
+        Scanner scanner = new Scanner(System.in);
+
+        int n = scanner.nextInt();
+
+        int[][] nums = new int[n][2];
+
+        for(int i = 0 ; i < n ;i++) {
+            nums[i][0] = scanner.nextInt();
+            nums[i][1] = scanner.nextInt();
+        }
+
+        int[][] results = new mergedIntervals().mergeIntervals(nums);
+
+        for (int i = 0; i < results.length; ++i) {
+            System.out.printf("%d %d\n", results[i][0], results[i][1]);
+        }
+    }
+	
 
 
     public int[][] mergeIntervals(Interval arr[]) {
 
         Stack<Interval> stack =new Stack<>();
-        //Interval out[] =new Interval[n];
-        int[][] nums = new int[arr.length][2];
+        
 
         Arrays.sort(arr,new Comparator<Interval>()
         {
@@ -50,6 +93,7 @@ public class mergedIntervals {
             }
         }
         int i =0;
+        int[][] nums = new int[stack.size()][2];
         while(!stack.isEmpty())
         {
             Interval t =stack.pop();
@@ -63,7 +107,7 @@ public class mergedIntervals {
     }
 
 
-    public static void main(String[] args)
+   /* public static void main(String[] args)
     {
         Scanner scanner = new Scanner(System.in);
 
@@ -85,7 +129,7 @@ public class mergedIntervals {
             System.out.printf("%d %d\n", results[i][0], results[i][1]);
         }
         
-    }
+    }*/
 }
 
 
