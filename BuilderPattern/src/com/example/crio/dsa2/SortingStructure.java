@@ -58,39 +58,35 @@ class SortingStructure {
     static int[] marksSort(int n, Student arr[]) {
     	 int id[] = new int[n];
 
-         Arrays.sort(arr, new Comparator<Student>() {
-     @Override
-     public int compare(Student emp1, Student emp2) {
-    	 
-    	 int sum1 = 0;
-     	for (int i=0; i<emp1.marks.length;i++)
-     	{
-     	    sum1+= emp1.marks[i];
-     	}
-     	int sum2 = 0;
-     	for (int i=0; i<emp2.marks.length;i++)
-     	{
-     	    sum2+= emp2.marks[i];
-     	}
-     	
-         int i = Integer.valueOf(sum1).compareTo(Integer.valueOf(sum2));
-         
-         
-         if (i != 0) {
-        	 return i *-1;
-          } 
+			Arrays.sort(arr, new Comparator<Student>() {
+				@Override
+				public int compare(Student emp1, Student emp2) {
 
-         int j = emp1.name.compareTo(emp2.name);
-         if (j != 0) 
-         return j;
-         else
-         {
-        
-        	return Integer.valueOf(emp1.id).compareTo(Integer.valueOf(emp2.id));
-         }
-         
-     }
- });
+					int sum1 = 0;
+					for (int i = 0; i < emp1.marks.length; i++) {
+						sum1 += emp1.marks[i];
+					}
+					int sum2 = 0;
+					for (int i = 0; i < emp2.marks.length; i++) {
+						sum2 += emp2.marks[i];
+					}
+
+					int i = Integer.valueOf(sum1).compareTo(Integer.valueOf(sum2));
+
+					if (i != 0) {
+						return i * -1;
+					}
+
+					int j = emp1.name.compareTo(emp2.name);
+					if (j != 0)
+						return j;
+					else {
+
+						return Integer.valueOf(emp1.id).compareTo(Integer.valueOf(emp2.id));
+					}
+
+				}
+			});
 
     for (int j = 0; j < n; j++)
     {
