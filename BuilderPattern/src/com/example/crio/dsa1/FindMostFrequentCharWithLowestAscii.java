@@ -8,7 +8,7 @@ public class FindMostFrequentCharWithLowestAscii {
 	public static void main(String[] args) {
         char[] characters = {'A', 'b', 'c', 'a', 'b', 'c', 'a', 'b','a','a','A','A','A'};
 
-        char mostFrequentChar = findMostFrequentCharWithLowestAscii(characters);
+        Object[] mostFrequentChar = findMostFrequentCharWithLowestAscii(characters);
 
         System.out.println("Most frequent character with the lowest ASCII value: " + mostFrequentChar);
     }
