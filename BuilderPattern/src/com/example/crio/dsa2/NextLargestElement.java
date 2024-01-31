@@ -11,7 +11,7 @@ public class NextLargestElement {
 		System.out.println("Given Array is");
 		System.out.println(Arrays.toString(arr));
 		
-		int result[] =nextLargerElement2(arr,arr.length);
+		int result[] =nextSmallestElement2(arr,arr.length);
 
 		System.out.println("reduce array");
 		System.out.println(Arrays.toString(result));
@@ -70,6 +70,37 @@ static int [] nextLargerElement2(int nums[], int n) {
 
 		return ans;
 	}
+
+
+static int [] nextSmallestElement2(int nums[], int n) {
+	
+	//int size = (n*2) - 1, 
+		int	k = n - 1;
+	Stack<Integer> stck = new Stack<Integer>();
+	int[] ans = new int[n];
+	n=n-1;
+	Arrays.fill(ans, -1);
+   //iterate from backwards
+	while(n >=0) {
+		//int idx = size%n;
+
+		while(!stck.isEmpty() && stck.peek() >= nums[n]) 
+		stck.pop();
+
+		
+			if(!stck.isEmpty() && stck.peek() < nums[n])
+			{
+				ans[k] = stck.peek();
+			}
+			k--;
+		
+
+		stck.push(nums[n]);
+		n--;
+	}
+
+	return ans;
+}
 	
 	
 	

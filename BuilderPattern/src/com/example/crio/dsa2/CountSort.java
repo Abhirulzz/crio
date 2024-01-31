@@ -36,7 +36,7 @@ public class CountSort {
 	}
 
 	public static void main(String args[]) {
-		String str = "abceddaefg";
+		String str = "acceddaefgb";
 		System.out.println(str);
 		// System.out.println(capitalise(str));
 		int k = 3;

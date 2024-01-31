@@ -6,12 +6,40 @@ public class PostfixExpression {
 	
 	public static void main(String args[]) {
 		//String str = "5 11 + 9 5 - + 10 *";
-		String str = "()";
+		String str = ")(())(()";
 		System.out.println(str);
 		//System.out.println(capitalise(str));
 		//System.out.println(postfixExpression(str));
-		System.out.println(ValidParenthesis(str));
+		//System.out.println(ValidParenthesis(str));
+		System.out.println(longestValidParentheses(str));
 	}
+	
+	public static int longestValidParentheses(String s) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(-1); // Initialize the stack with -1 as a base index
+        int maxLength = 0;
+
+		for (int i = 0; i < s.length(); i++) {
+			char currentChar = s.charAt(i);
+
+			if (currentChar == '(') {
+				stack.push(i);
+			} else {
+				stack.pop();
+
+				if (stack.isEmpty()) {
+					stack.push(i);
+				} else {
+					maxLength = Math.max(maxLength, i - stack.peek());
+				}
+			}
+		}
+
+        return maxLength;
+    }
+	
+	
+       
 	
 	static Boolean isOperator(String exp) {
 		

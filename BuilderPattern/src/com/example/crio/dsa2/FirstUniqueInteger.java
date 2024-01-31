@@ -48,18 +48,24 @@ public class FirstUniqueInteger {
 	
 	public static int firstUniqueInteger(ArrayList<Integer> vec) {
 
-		HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
-		
+		HashMap<Integer, Integer> frequencyMap = new HashMap<Integer, Integer>();
+		Queue<Integer> queue = new LinkedList<>();
 
-		int R = 0;
-		int L = 0;
-		int firstUniqueIntegerIndex = 0;
-		int firstUniqueInteger = 0;
-		for( int a : vec) 
-			
-       
 		
-		return -1;
+		for (int num : vec) {
+			queue.offer(num);
+			frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+		}
+
+		 while (!queue.isEmpty() && frequencyMap.get(queue.peek()) > 1) {
+	            queue.poll();
+	        }
+
+	        if (!queue.isEmpty()) {
+	            return queue.peek();
+	        } else {
+	            return -1; // No unique number found
+	        }
 	}
 	 
 	 
