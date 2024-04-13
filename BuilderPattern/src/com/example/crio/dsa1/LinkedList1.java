@@ -2,7 +2,7 @@ package com.example.crio.dsa1;
 
 import java.util.HashSet;
 
-public class LinkedList {
+public class LinkedList1 {
 
 	public static void printList(ListNode head) {
 		while (head != null) {
