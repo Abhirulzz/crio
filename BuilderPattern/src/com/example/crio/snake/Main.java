@@ -1,10 +1,5 @@
 package com.example.crio.snake;
 
-import java.util.Arrays;
-
-import com.example.crio.snake.Direction;
-import com.example.crio.snake.Snake;
-
 public class Main {
 	public static void main(String[] args) {
 	    // Create a new Snake object
