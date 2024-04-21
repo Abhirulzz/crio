@@ -20,7 +20,7 @@ public class NonRepeating {
 	    System.out.println("The  first  non  repeated  character  is  :    " + firstNonRepeatedChar);
 	    in.close();
 	    
-	    List < Integer > nums = Arrays.asList(1, 3, 6, 8, 10, 18, 36,1,6,8);
+	    List < Integer > nums = Arrays.asList(1, 3, 6, 8, 10, 18, 36,1,6,8);;
 	    System.out.println("List of numbers: " + nums);
 
 	    // Calculate the average using streams
