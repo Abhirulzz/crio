@@ -34,6 +34,11 @@ public class NonRepeating {
 	    	      .distinct()
 	    	      .collect(Collectors.toList());
 	    	    System.out.println("After removing duplicates from the said list: " + distinctNumbers);
+	    	    
+	    	    
+	   String inpu ="Abirami";
+	   String output = inpu.chars().mapToObj(i -> String.valueOf((char) i)).reduce((a,b)-> b+a).orElse("");
+	   System.out.println("reverse " + output);
 	  }
 	 
 	  
