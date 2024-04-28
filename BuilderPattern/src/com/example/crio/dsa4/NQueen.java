@@ -13,7 +13,8 @@ public class NQueen {
 	                board[i][j] = '0';
 	        List < List < String >> res = new ArrayList < List < String >> ();
 	        StringBuilder result = new StringBuilder();
-	        if (dfs(0, board, res,result))
+	       dfs(0, board, res,result);
+	       if(result.length() > 0)
 	        return result.toString();
 	        else
 	        	return "No Solution Exists";
@@ -45,12 +46,11 @@ public class NQueen {
 	        return true;
 	    }
 
-	    static boolean dfs(int col, char[][] board, List < List < String >> res,StringBuilder result) {
+	    static void dfs(int col, char[][] board, List < List < String >> res,StringBuilder result) {
 	        if (col == board.length) {
 	            res.add(construct(board));
 	            generateBoard(board,result);
-	            return true;
-	        }
+	     	   }
 
 	        for (int row = 0; row < board.length; row++) {
 	            if (validate(board, row, col)) {
@@ -59,7 +59,7 @@ public class NQueen {
 	                board[row][col] = '0';
 	            }
 	        }
-	        return false;
+	      
 	    }
 
 
@@ -82,7 +82,7 @@ public class NQueen {
 	        return res;
 	    }
 	    public static void main(String args[]) {
-	        int N = 2;
+	        int N = 4;
 	        String NQueen = solveNQueens(N);
 	        /*List < List < String >> queen = solveNQueens(N);
 	        int i = 1;
