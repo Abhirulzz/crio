@@ -5,33 +5,38 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class DetectCycle {
+public class GraphIsTree {
 	
-	public  String FindCycle(int nodes,List<List<Integer>> edges)
-	{
+	 int graphValidTree(int n, int[][] edges){
 		HashMap<Integer, List<Integer>> adj = new HashMap<Integer, List<Integer>>();
-		for (int i = 1; i <= nodes; i++) {
+		for (int i = 0; i <= n; i++) {
 			adj.put(i, new ArrayList<>());
 		}
 
-		for (List<Integer> src : edges) {
-			adj.get(src.get(0)).add(src.get(1));
-			adj.get(src.get(1)).add(src.get(0));
+		for (int[] src : edges) {
+			adj.get(src[0]).add(src[1]);
+			adj.get(src[1]).add(src[0]);
 			// adj.put(src.get(0),new ArrayList<>());
 		}
 
-		boolean[] vis = new boolean[nodes + 1];
-		for (int i = 1; i <= nodes; i++) {
+		boolean[] vis = new boolean[n + 1];
+		for (int i = 0; i <= n; i++) {
 			if (vis[i] == true)
 				continue;
 
 			if (hasCycle(i, -1, adj, vis) == true) {
-				return "Yes";
+				return 0;
+			}
+			
+			for(int u=0;u<=n;u++)
+			{
+				if(!vis[u])
+					return 0;
 			}
 
 		}
-		return "No";
-	}
+		return 1;
+    }
 	
 	public  static boolean hasCycle(int src, int parent, HashMap<Integer,List<Integer>> adj,boolean[] vis )
 	{
@@ -56,25 +61,20 @@ public class DetectCycle {
 		return false;
 	}
 	
-		
+
 	public static void main(String[] args) {
         // Example input: list of edges represented as list of lists
-        List<List<Integer>> edges = new ArrayList<>();
-       //dges.add(Arrays.asList(1, 2));
-       //dges.add(Arrays.asList(1, 3));
-        edges.add(Arrays.asList(3, 2));
-        edges.add(Arrays.asList(1, 2));
-        edges.add(Arrays.asList(2, 3));
-        int nodes  =0;
-        for (List<Integer> edge : edges) {
-            nodes = Math.max(nodes, edge.get(0));
-            nodes = Math.max(nodes, edge.get(1));
-        }
-        DetectCycle pathFinder = new DetectCycle();
+		int[][] graphData = {
+	            {5, 4},     // Node 0 has outgoing edges to node 1
+	            {0, 1},     // Node 1 has outgoing edges to node 2
+	            {0, 2},     // Node 2 has outgoing edges to node 0
+	            {0, 3},     // Node 3 has outgoing edges to node 4
+	            {0, 4}      // Node 5 has outgoing edges to node 3
+	        };
+		GraphIsTree pathFinder = new GraphIsTree();
 
-          String result = pathFinder.FindCycle(nodes,edges);
+          int result = pathFinder.graphValidTree(graphData.length,graphData);
             System.out.println(result);
         
-    }
-
+	}
 }

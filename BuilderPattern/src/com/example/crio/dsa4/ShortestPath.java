@@ -56,9 +56,11 @@ class Point {
 	    	Vector<String> path = new Vector<>();
 	        Set<Point> visited = new HashSet<>();
 	        if (findPathRecursive(grid, start, goal, path, visited)) {
+	        	
 	            return path;
-	        } else {
-	            return null; // No path found
+	        	      } else {
+	      path.add("Not Possible");
+	        	return path;
 	        }
 	        
 	    }
@@ -68,7 +70,7 @@ class Point {
 	        // Base case: If current point is the goal, add to path and return true
 	    	System.out.println(current +" " + goal);
 	    	Point res = new Point(current.x +1,current.y +1);
-	        if (current.equals(goal)) {
+	        if (current.equals(goal) && grid[current.x][current.y] != 1) {
 	            path.add(res.toString());
 	            return true;
 	        }
@@ -112,7 +114,7 @@ class Point {
 	        Point start = new Point(1, 1);
 	        Point goal = new Point(grid.length, grid[0].length);
 
-	        List<String> path = robotInAGrid(grid, 2, 2);
+	        List<String> path = robotInAGrid(grid, 3, 3);
 	        if (!path.isEmpty()) {
 	            System.out.println("Path found:");
 	            for (String point : path) {
