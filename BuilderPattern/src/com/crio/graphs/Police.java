@@ -3,14 +3,17 @@ package com.crio.graphs;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 
 public class Police {
 	  public static ArrayList<Integer> townsAndPoliceStations(int n,List<List<Integer> >  edges,List<Integer> sources){
 
-			HashMap<Integer, List<Integer>> adj = new HashMap<Integer, List<Integer>>();
+		  HashMap<Integer, List<Integer>> adj = new HashMap<Integer, List<Integer>>();
 			for (int i = 1; i <= n; i++) {
 				adj.put(i, new ArrayList<>());
 			}
@@ -21,18 +24,33 @@ public class Police {
 				// adj.put(src.get(0),new ArrayList<>());
 			}
 
-			int[] color = new int[n + 1];
-			Arrays.fill(color, -1);
+			Queue<Integer> queue = new LinkedList<>();
+	        Set<Integer> visited = new HashSet<>();
+	        Map<Integer, Integer> parent = new HashMap<>();
 
-	        // Check each component in case the graph is disconnected
-	        for (int i = 1; i <= n; i++) {
-	            if (color[i] == -1) { // Unvisited node
-	                if (!isBipartiteUtil(i, color,adj)) {
-	                    return "Possible";
+	        // Initialize BFS
+	        queue.add(start);
+	        visited.add(start);
+	        parent.put(start, null);
+
+	        // BFS traversal
+	        while (!queue.isEmpty()) {
+	            int current = queue.poll();
+
+	            // Check if we've reached the end vertex
+	            if (current == end) {
+	                break;
+	            }
+
+	            // Explore neighbors
+	            for (int neighbor : adj.getOrDefault(current, new ArrayList<>())) {
+	                if (!visited.contains(neighbor)) {
+	                    visited.add(neighbor);
+	                    parent.put(neighbor, current);
+	                    queue.add(neighbor);
 	                }
 	            }
 	        }
-	        return "NotPossible";
 		
 	    }
 	  
