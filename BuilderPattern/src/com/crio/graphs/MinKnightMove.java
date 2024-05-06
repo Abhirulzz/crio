@@ -80,7 +80,7 @@ public class MinKnightMove {
 	       // int targetX = 2;
 	       // int targetY = 1;
 	      
-	        int minMoves = minKnightMoves(starting_pos,ending_pos,8);
+	        int minMoves = minKnightMoves(starting_pos,ending_pos,2000);
 	        System.out.println("Minimum moves required: " + minMoves);
 	    }
 	}

@@ -26,10 +26,8 @@ public class NumberOfIsland {
 				
 				if(matrix[i][j] == 1)
 				{
-					
-					markisland(i, j,matrix, r ,c) ;
-				 
-				 count++;
+					markisland(i, j, matrix, r, c);
+					count++;
 				}
 
 			}
