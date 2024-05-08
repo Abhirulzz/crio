@@ -1,35 +1,39 @@
 package com.crio.graphs;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class NearestCity {
 	
-	    public static int findTheCity(int n, int[][] edges, int distanceThreshold) {
-	        long[][] matrix = new long[n+1][n+1];
+	    public static  ArrayList<Integer> findTheCity(int n, ArrayList<ArrayList<Integer>>  edges, ArrayList<Integer> src) {
+	        int[][] matrix = new int[n+1][n+1];
 	        
 	        // Initialize the matrix
-	        for (int i = 0; i < n; i++) {
-	            for (int j = 0; j < n; j++) {
+	        for (int i = 1; i <= n; i++) {
+	            for (int j = 1; j <=n; j++) {
 	                if (i == j) {
-	                    matrix[i][j] = 0L; // Distance from a city to itself is zero
+	                    matrix[i][j] = 0; // Distance from a city to itself is zero
 	                } else {
-	                    matrix[i][j] = Long.MAX_VALUE / 2; // Large value representing no direct connection
+	                    matrix[i][j] = Integer.MAX_VALUE / 2; // Large value representing no direct connection
 	                }
 	            }
 	        }
 
 	        // Populate the matrix with edge values
-	        for (int[] edge : edges) {
-	            int a = edge[0];
-	            int b = edge[1];
-	            int cost = edge[2];
-	            matrix[a][b] = cost;
-	            matrix[b][a] = cost;
+	        for (ArrayList<Integer> edge : edges) {
+	            int a = edge.get(0);
+	            int b = edge.get(1);
+	            //int cost = edge[2];
+	            matrix[a][b] = 1;
+	            matrix[b][a] = 1;
 	        }
 
 	        // Apply Floyd-Warshall algorithm to compute shortest paths
-	        for (int k = 0; k <= n; k++) {
-	            for (int i = 0; i <= n; i++) {
-	                for (int j = 0; j <= n; j++) {
-	                    long newCost = matrix[i][k] + matrix[k][j];
+	        for (int k = 1; k <= n; k++) {
+	            for (int i = 1; i <= n; i++) {
+	                for (int j = 1; j <= n; j++) {
+	                    int newCost = matrix[i][k] + matrix[k][j];
 	                    if (newCost < matrix[i][j]) {
 	                        matrix[i][j] = newCost;
 	                    }
@@ -38,36 +42,41 @@ public class NearestCity {
 	        }
 
 	        // Determine the city with the fewest neighbors within the threshold
-	        int station = -1;
-	        int minNeighbors = Integer.MAX_VALUE;
-	        
-	        for (int i = 0; i <= n; i++) {
+	       
+	       ArrayList<Integer> ans = new ArrayList<>();;
+	       int minDist[] = new int[n+1];
+	   		Arrays.fill(minDist, Integer.MAX_VALUE);
+	        for (int i = 1; i <= n; i++) {
 	            int count = 0;
-	            for (int j = 0; j <= n; j++) {
-	                if (matrix[i][j] <= distanceThreshold) {
-	                    count++;
+	            for (int j : src) {
+	                if (matrix[i][j] == 0) {
+	                    //ans.add(0);
+	                    minDist[i]=0;
+	                }else if(matrix[i][j] <= minDist[i]) 
+	                {
+	                	//ans.add(j);
+	                	minDist[i]=matrix[i][j];
 	                }
 	            }
-
-	            if (count <= minNeighbors) { // If tied, return the city with the higher index
-	                minNeighbors = count;
-	                station = i;
-	            }
+	           
+	        }
+	        for (int i = 1; i <= n; i++) {
+	        ans.add(minDist[i]);
 	        }
 
-	        return station;
+	        return ans;
 	    }
 	    
 	    public static void main(String[] args) {
-	        // Example input: list of edges represented as list of lists
+	       
 			int[][] graphData = {
-		            {1,2,8} ,{1,3,7}    // Node 0 has outgoing edges to node 1
-		               // Node 5 has outgoing edges to node 3
-		      };
+		            {1,2} ,{2,3} ,{3,4},{4,2},{1,3}   
+		         		      };
 			
-		
-
-	          int result = findTheCity(3,graphData,1);
+			int[] src = {1,4};
+		            			
+			ArrayList<Integer> result = new ArrayList<>();;
+	          result = findTheCity(4,graphData,src);
 	            System.out.println(result);
 	        
 		}
