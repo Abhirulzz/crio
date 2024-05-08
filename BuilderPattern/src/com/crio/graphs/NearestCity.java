@@ -61,26 +61,11 @@ public class NearestCity {
 	    public static void main(String[] args) {
 	        // Example input: list of edges represented as list of lists
 			int[][] graphData = {
-		            {1,2,1} ,{1,3,7}    // Node 0 has outgoing edges to node 1
+		            {1,2,8} ,{1,3,7}    // Node 0 has outgoing edges to node 1
 		               // Node 5 has outgoing edges to node 3
 		      };
 			
-		/*	4 5
-
-			1 2
-
-			2 3
-
-			3 4
-
-			4 2
-
-			1 3
-
-			2
-
-			1 4  */
-			//GraphIsTree pathFinder = new GraphIsTree();
+		
 
 	          int result = findTheCity(3,graphData,1);
 	            System.out.println(result);
