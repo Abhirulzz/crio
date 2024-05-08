@@ -90,7 +90,7 @@ public class RottingOrange {
 		
 		list.add(Arrays.asList(2,1 ,1));
 		list.add(Arrays.asList(1 ,1, 0));
-		list.add(Arrays.asList(0 ,1 ,1));
+		list.add(Arrays.asList(0 ,1 ,2));
 		List<List<Integer>> edges = new ArrayList<>(list); 
 		int nodes = 0;
 		for (List<Integer> edge : edges) {
