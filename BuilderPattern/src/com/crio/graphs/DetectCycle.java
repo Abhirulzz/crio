@@ -62,9 +62,9 @@ public class DetectCycle {
         List<List<Integer>> edges = new ArrayList<>();
        //dges.add(Arrays.asList(1, 2));
        //dges.add(Arrays.asList(1, 3));
-        edges.add(Arrays.asList(3, 2));
         edges.add(Arrays.asList(1, 2));
-        edges.add(Arrays.asList(2, 3));
+        edges.add(Arrays.asList(2, 1));
+        //edges.add(Arrays.asList(2, 3));
         int nodes  =0;
         for (List<Integer> edge : edges) {
             nodes = Math.max(nodes, edge.get(0));

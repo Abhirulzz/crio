@@ -35,6 +35,7 @@ public class Topo {
 	        int vis[] = new int[V+1];
 	        Stack<Integer> st = new Stack<Integer>();
 	        for (int i = 1; i <= V; i++) {
+	        	
 	            if (vis[i] == 0) {
 	                dfs(i, vis, st, adj);
 	            }
