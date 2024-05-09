@@ -11,79 +11,73 @@ import java.util.Queue;
 import java.util.Set;
 
 public class Police {
-	  public static ArrayList<Integer> townsAndPoliceStations(int n,List<List<Integer> >  edges,List<Integer> sources){
+	  public static ArrayList<Integer> townsAndPoliceStations(int n,List<List<Integer> >  edges,List<Integer> src){
 
 		  HashMap<Integer, List<Integer>> adj = new HashMap<Integer, List<Integer>>();
 			for (int i = 1; i <= n; i++) {
 				adj.put(i, new ArrayList<>());
 			}
 
-			for (List<Integer> src : edges) {
-				adj.get(src.get(0)).add(src.get(1));
-				adj.get(src.get(1)).add(src.get(0));
+			for (List<Integer> city : edges) {
+				adj.get(city.get(0)).add(city.get(1));
+				adj.get(city.get(1)).add(city.get(0));
 				// adj.put(src.get(0),new ArrayList<>());
 			}
 
-			Queue<Integer> queue = new LinkedList<>();
-	        Set<Integer> visited = new HashSet<>();
-	        Map<Integer, Integer> parent = new HashMap<>();
+			Queue<Integer> q = new LinkedList<>();
+	  
 
-	        // Initialize BFS
-	        queue.add(start);
-	        visited.add(start);
-	        parent.put(start, null);
+	        int [] dist = new int[n+1];
+	        Arrays.fill(dist, -1);
+	        
+	        boolean [] visited = new boolean[n+1];
+	       // Arrays.fill(dist, -1);
+	        
+	        for (int i = 0; i < src.size(); i++) {
+				
+						q.add(src.get(i));
+						dist[src.get(i)] =0;
+						visited[src.get(i)]= true;
+					}
+			 // BFS traversal
+	        while (!q.isEmpty()) {
+	            int city = q.remove();
 
-	        // BFS traversal
-	        while (!queue.isEmpty()) {
-	            int current = queue.poll();
-
-	            // Check if we've reached the end vertex
-	            if (current == end) {
-	                break;
-	            }
-
-	            // Explore neighbors
-	            for (int neighbor : adj.getOrDefault(current, new ArrayList<>())) {
-	                if (!visited.contains(neighbor)) {
-	                    visited.add(neighbor);
-	                    parent.put(neighbor, current);
-	                    queue.add(neighbor);
+	            for (int neighbor : adj.get(city)) {
+	            	
+	                if (!visited[neighbor]){
+	                	visited[neighbor]= true;
+	                    dist[neighbor] = dist[city] +1;
+	                    q.add(neighbor);
 	                }
+	                	                
 	            }
 	        }
+	        ArrayList<Integer> ans = new ArrayList<>();
+	        for (int i = 1; i <= n; i++) {
+		        ans.add(dist[i]);
+		        }
+
+		        return ans;
 		
 	    }
 	  
-	  
-	  private static boolean isBipartiteUtil(int src, int[] color,HashMap<Integer, List<Integer>> adj ) {
-	        Queue<Integer> queue = new LinkedList<>();
-	        queue.offer(src);
-	        color[src] = 0; // Color the source node with color 0
-
-	        while (!queue.isEmpty()) {
-	            int u = queue.poll();
-
-	            for (int v : adj.get(u)) {
-	                if (color[v] == -1) { // Unvisited node
-	                    color[v] = 1 - color[u]; // Color with opposite color of u
-	                    queue.offer(v);
-	                } else if (color[v] == color[u]) {
-	                    return false; // Same color found for adjacent nodes, not bipartite
-	                }
-	            }
-	        }
-	        return true;
-	    }
+	
 	  public static void main(String[] args) {
 	        // Example input: list of edges represented as list of lists
 	        List<List<Integer>> edges = new ArrayList<>();
-	        edges.add(Arrays.asList(5, 4));
-	        edges.add(Arrays.asList(2, 1));
-	        edges.add(Arrays.asList(1, 3));
+	        edges.add(Arrays.asList(1,2));
+	        edges.add(Arrays.asList(2, 3));
+	        edges.add(Arrays.asList(3, 4));
 	        edges.add(Arrays.asList(4, 2));
-	        edges.add(Arrays.asList(2, 5));
+	        edges.add(Arrays.asList(2,5));
+	        edges.add(Arrays.asList(3,6));
 	        
-	      
+	        int[][] graphData = {
+		            {1,2} ,{2,3} ,{3,4},{4,2},{1,3}   
+		         		      };
+			
+			//int[] src = {1,4};
 	        int nodes  =0;
 	        for (List<Integer> edge : edges) {
 	            nodes = Math.max(nodes, edge.get(0));
@@ -91,7 +85,8 @@ public class Police {
 	        }
 	        //Bipartite pathFinder = new Bipartite();
 	        ArrayList<Integer> src = new ArrayList<>();
-	        src.add(2);
+	        src.add(1);
+	        src.add(4);
 	        ArrayList<Integer> result = townsAndPoliceStations(nodes,edges,src);
 	            System.out.println(result);
 	        

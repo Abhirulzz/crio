@@ -53,11 +53,11 @@ public class Topo {
 	    public static void main(String[] args) {
 	        // Example input: list of edges represented as list of lists
 	        List<List<Integer>> edges = new ArrayList<>();
-	        edges.add(Arrays.asList(5, 4));
+	        edges.add(Arrays.asList(1, 2));
 	        edges.add(Arrays.asList(2, 1));
-	        edges.add(Arrays.asList(1, 3));
-	        edges.add(Arrays.asList(4, 2));
-	        edges.add(Arrays.asList(2, 5));
+	        //edges.add(Arrays.asList(1, 3));
+	        //edges.add(Arrays.asList(4, 2));
+	        //edges.add(Arrays.asList(2, 5));
 	        
 	      
 	        int nodes  =0;
