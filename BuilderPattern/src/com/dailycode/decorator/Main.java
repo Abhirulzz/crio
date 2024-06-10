@@ -35,7 +35,7 @@ public class Main {
     public static void main(String[] args) {
         // We got pizza with different topings , we can keep adding topings
         Pizza pizza = new JalepanoDecorator(new CheeseBurstDecorator(new BasePizza()));
-        System.out.println(pizza.bake());
+        System.out.println(pizza.price());
         Pizza pizza1 = new CheeseBurstDecorator(new BasePizza());
         System.out.println(pizza1.price());
         Pizza pizza2 = new JalepanoDecorator(new BasePizza());

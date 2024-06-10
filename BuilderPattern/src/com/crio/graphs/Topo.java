@@ -72,10 +72,48 @@ public class Topo {
 	          for (int node : result) {
 	              System.out.print(node + " ");
 	          }
-	          System.out.println("");
+	          //System.out.println("");
 	        
+
 	    }
-	}
+}
+	
 
-
+/*
+ * 10 32
+f T D K P d b N l E 
+f E
+P l
+d D
+d K
+N T
+D b
+d T
+D K
+P K
+E N
+E K
+f K
+f d
+f N
+N D
+f b
+P N
+f D
+f T
+l K
+E d
+E b
+b K
+b T
+N b
+K T
+E T
+P D
+N l
+l b
+l T
+P d
+*/
+ */
 

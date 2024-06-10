@@ -1,5 +1,5 @@
 package com.dailycode.decorator;
-public class BasePizza implements Pizza{
+public class BasePizza extends Pizza{
     @Override
     public String bake() {
         return "Base Pizza";

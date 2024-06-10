@@ -1,5 +1,5 @@
 package com.dailycode.decorator;
-public abstract class PizzaDecorator implements Pizza {
+public abstract class PizzaDecorator extends Pizza {
     protected Pizza pizza;
 
     public PizzaDecorator(Pizza pizza) {

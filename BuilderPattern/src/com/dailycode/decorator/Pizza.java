@@ -1,5 +1,5 @@
 package com.dailycode.decorator;
-public interface Pizza {
-    public String bake();
-    public int price();
+public abstract class Pizza {
+    public abstract String bake();
+    public abstract int price();
 }

@@ -3,7 +3,7 @@ package com.example.crio.dsa2;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KthlargestBinarySearch {
+public class KthlargestMatrix {
 
 	public static void main(String[] args) {
 
